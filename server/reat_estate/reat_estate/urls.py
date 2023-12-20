@@ -26,7 +26,9 @@ urlpatterns = [
     path('api/token',TokenObtainPairView.as_view(),name='obtain-token'),
     path('api/token/refresh/',TokenRefreshView.as_view(),name='refresh-token'),
     path('api/users/',include('users.urls')),
-    path('api-auth/',include('rest_framework.urls'))
+    path('api-auth/',include('rest_framework.urls')),
+    path('api/realtor/',include('realtor.urls')),
+    path('api/listings/',include('listings.urls'))
     
 ] 
 static.static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
