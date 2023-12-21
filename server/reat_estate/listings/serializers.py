@@ -14,5 +14,4 @@ class ListingDetailedSerializer(ModelSerializer):
     
     class Meta:
         model= Listings
-        feilds = "__all__"
-        lookup_field = "slug"
+        fields = "__all__"

@@ -28,7 +28,8 @@ urlpatterns = [
     path('api/users/',include('users.urls')),
     path('api-auth/',include('rest_framework.urls')),
     path('api/realtor/',include('realtor.urls')),
-    path('api/listings/',include('listings.urls'))
+    path('api/listings/',include('listings.urls')),
+    path('api/contacts/',include('contact.urls'))
     
 ] 
 static.static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
