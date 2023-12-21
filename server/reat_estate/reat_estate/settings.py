@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework_simplejwt',
     'realtor',
-    'listings'
+    'listings',
+    'contact'
 ]
 
 MIDDLEWARE = [
@@ -162,3 +163,11 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW  = True
 AUTH_USER_MODEL = 'users.UserAccount'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'chahatsagar2003@gmail.com'
+EMAIL_HOST_PASSWORD = 'fhnt zleh favo abnh '
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
