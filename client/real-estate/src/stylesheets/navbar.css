@@ -1,0 +1,46 @@
+
+
+.nav-bar {
+    max-height: 18vh;
+    min-height: 15vh;
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    background-color: black;
+    width: 100%;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-buttons a {
+    font-size: 1.2rem;
+    color: rgb(213, 210, 210);
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 1em;
+    text-decoration: none;
+    align-self: center;
+  } 
+  
+  
+.logo-title {
+    color: rgb(186, 186, 186);
+    display: flex;
+    margin-left : 2rem;
+    align-self: center;
+
+  }
+  
+.logo-title h2 {
+    margin-left: 1rem;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+.estate-logo {
+    margin-right: 0.5em;
+    max-height: 80%;
+    height: auto;
+  }
+  

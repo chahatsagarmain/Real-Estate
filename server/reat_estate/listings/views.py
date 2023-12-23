@@ -6,6 +6,7 @@ from rest_framework import permissions
 from .serializers import ListingSerializer ,  ListingDetailedSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from .permission import IsAuthenticatedJWTCookie
 # Create your views here.
 
 class ListingsView(ListAPIView):
@@ -20,7 +21,7 @@ class ListingsbyIdView(RetrieveAPIView):
     lookup_flield = 'id'
 
 class SearchView(APIView):
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = (IsAuthenticatedJWTCookie,)
 
     def get(self, request):
 

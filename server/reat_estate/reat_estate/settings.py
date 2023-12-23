@@ -161,7 +161,11 @@ REST_FRAMEWORK = {
     'PAGE_SIZE' :3
 }
 
-CORS_ORIGIN_ALLOW  = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000"
+]
+CORS_ALLOW_CREDENTIALS = True
+
 AUTH_USER_MODEL = 'users.UserAccount'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -171,3 +175,15 @@ EMAIL_HOST_PASSWORD = 'fhnt zleh favo abnh '
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+from datetime import timedelta
+...
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days = 1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "UPDATE_LAST_LOGIN": False,
+    
+}

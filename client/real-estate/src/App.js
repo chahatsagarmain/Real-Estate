@@ -1,24 +1,59 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  createBrowserRouter,
+  RouterProvider
+} from 'react-router-dom';
+import NotFound from './containers/NotFound';
+import Layout from './containers/Layout';
+import Contact from "./containers/Contact";
+import Register from './containers/Register';
+import context from './context/context.js';
+import {useState } from 'react';
+import Login from "./containers/LogIn.js"
+
+const router = createBrowserRouter([
+  {
+    path : "/",
+    element : <Layout />,
+    children : [
+      {
+        path : ":page",
+        element : <div><h1>root route</h1></div>
+      },
+      {
+        path : "contact",
+        element : <Contact />
+      },
+      {
+       path : "register",
+       element :<Register />,
+      },
+      {
+        path : "login",
+        element : <Login />
+      }
+    ],
+    
+  },
+  {
+    path: '*',
+    element: <NotFound />
+  }
+])
+
+
 
 function App() {
+
+  const [userName , setUsername] = useState(null)
+  const [currentPage , setCurrentPage] = useState(1)
+  const [listings , setListings] = useState([])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <context.Provider value = {{userName,setUsername}} >
+      <RouterProvider router={router}>
+      </RouterProvider>
+    </context.Provider>
   );
 }
 
