@@ -6,15 +6,31 @@ from .models import Contact
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from rest_framework.parsers import MultiPartParser , FormParser
+from .permission import IsAuthenticatedJWTCookie
+from rest_framework_simplejwt.tokens import AccessToken
+from django.contrib.auth import get_user_model
+Users = get_user_model()
 # Create your views here.
 class SendMailView(APIView):
+    parser_classes = (MultiPartParser,FormParser,)
+    permission_classes = (IsAuthenticatedJWTCookie,)
     
     def post(self ,request):
         try:
-            data = request.data
+            data = request.POST
+            token = request.COOKIES.get("token",None)
+            
+            user_id = AccessToken(token=token).payload.get("user_id")
+            user = Users.objects.get(id = user_id)
+            raw_data = {
+                "email" : user.email,
+                "name" : user.name,
+                "subject" : data.get("subject"),
+                "message" : data.get("message")
+            }
         
-            serialized_data = ContactSerializer(data = data)
+            serialized_data = ContactSerializer(data = raw_data)
             
             if serialized_data.is_valid():
                 message = serialized_data.data.get("email") + "\n" + serialized_data.data.get("message")

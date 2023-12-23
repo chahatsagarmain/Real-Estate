@@ -1,0 +1,12 @@
+.not-found{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.error404{
+    max-width: 50%;
+    height: auto;
+}
