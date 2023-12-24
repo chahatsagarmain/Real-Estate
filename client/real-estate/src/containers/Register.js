@@ -89,7 +89,7 @@ function Register(){
         <header>
         <div className="register">
             <div className="register-box">
-                <p>Register</p>
+                <h1>Register</h1>
                 <form encType="multipart/form-data" onSubmit={sumbit}>
                     <label>Email</label>
                     <input type="email" name="email" onChange={inputFields}></input>

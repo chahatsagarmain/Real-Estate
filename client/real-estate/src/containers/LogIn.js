@@ -54,22 +54,17 @@ function Login(){
                 body : form,
                 credentials : 'include'
             }
-            const response = await fetch("http://localhost:8000/api/users/login/" , options).then(
-                (response) => response.json()
-            ).catch(error => {
-                console.log(error)
-            })
+            const response = await fetch("http://localhost:8000/api/users/login/" , options)
 
-            if(response.status >= 300){
-                alert(response.message)
-                console.log(response)
-            }
-            else{
-                setUsername(response.username)
-                console.log(response)
-                console.log(userName)
-                navigate("/1")
-                
+            if (response.ok) {
+                const responseData = await response.json();
+                setUsername(responseData.username);
+                console.log('Username:', userName);
+                navigate('/1');
+            } else {
+                const errorData = await response.json();
+                alert(errorData.message);
+                console.log('Error Response:', errorData);
             }
 
         }
@@ -84,7 +79,7 @@ function Login(){
         <header>
         <div className="register">
             <div className="register-box">
-                <p>Login</p>
+                <h1>Login</h1>
                 <form encType="multipart/form-data" onSubmit={sumbit}>
                     <label>Email</label>
                     <input type="email" name="email" onChange={inputFields}></input>

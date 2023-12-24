@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@500&family=Josefin+Sans&family=Kalnia:wght@500;600&family=Montserrat:wght@300&family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@500&display=swap');
+#home-title{
+    font-family: 'Kalnia', serif;
+    color: #000000;
+    font-size: 4.5rem;
+    font-weight: 600;
+}
+
+.home-body{
+    display: flex;
+    flex-direction: column;
+}
+
+.home-body p{
+    text-align: center;
+    color: #2e2d2d;
+}
+
+.home{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    padding: 5%;
+}
+
+.home-body button{
+    margin-top : 2rem;
+    font-size: large;
+    background-color: #292929;
+    width: fit-content;
+    padding: 1.5rem 2.5rem 1.5rem 2.5rem;
+    align-self: center;
+    color: white;
+    border-radius: 40%;
+    border-style: solid;
+    border-width: 0.2rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 900;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 1s ;
+}
+
+
+.home-body button:hover{
+    transform: scale(1.1,1.1);
+}

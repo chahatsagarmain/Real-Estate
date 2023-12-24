@@ -15,7 +15,7 @@
   flex-direction: row;
 }
 
-.nav-buttons a {
+.nav-buttons a,p {
     font-size: 1.2rem;
     color: rgb(213, 210, 210);
     font-family: 'Montserrat', sans-serif;
@@ -36,6 +36,7 @@
 .logo-title h2 {
     margin-left: 1rem;
     font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
   }
   
 .estate-logo {

@@ -10,12 +10,17 @@ import Register from './containers/Register';
 import context from './context/context.js';
 import {useState } from 'react';
 import Login from "./containers/LogIn.js"
+import Home from './containers/Home.js';
 
 const router = createBrowserRouter([
   {
     path : "/",
     element : <Layout />,
     children : [
+      {
+        path : "",
+        element : <Home />
+      },
       {
         path : ":page",
         element : <div><h1>root route</h1></div>
@@ -46,7 +51,7 @@ const router = createBrowserRouter([
 function App() {
 
   const [userName , setUsername] = useState(null)
-  const [currentPage , setCurrentPage] = useState(1)
+  const [currentPage , setCurrentPage] = useState("")
   const [listings , setListings] = useState([])
 
   return (

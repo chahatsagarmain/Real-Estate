@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import UserSerializer
 from rest_framework.parsers import MultiPartParser,FormParser
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken , AccessToken
 # Create your views here.
 User = get_user_model()
 
@@ -102,5 +102,37 @@ class LoginView(APIView):
         
         except Exception as e:
             print(e)
+            response = {"message" : str(e)}
+            return Response(response,status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+class CheckCookie(APIView):
+    
+    permission_classes= (permissions.AllowAny,)
+    
+    def get(self,request):
+        try:
+            token = request.COOKIES.get("token",None)
+            
+            if token is None:
+                response = {"message" : "No token found"}
+                return Response(response,status=status.HTTP_401_UNAUTHORIZED)
+            
+            payload = AccessToken(token=token).payload
+            
+            if not payload:
+                response = {"message" : "No token found"}
+                return Response(response,status=status.HTTP_401_UNAUTHORIZED)
+            
+            user_id = payload.get("user_id")
+            user = User.objects.get(id=user_id)
+            if user is None:
+                response = {"message" : "No user found for the user id"}
+                return Response(response,status=status.HTTP_404_NOT_FOUND)
+            
+            response = {"username" : user.name}
+            print(response)
+            return Response(response,status=status.HTTP_200_OK)
+        
+        except Exception as e:
             response = {"message" : str(e)}
             return Response(response,status=status.HTTP_500_INTERNAL_SERVER_ERROR)
