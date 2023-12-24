@@ -11,6 +11,7 @@ import context from './context/context.js';
 import {useState } from 'react';
 import Login from "./containers/LogIn.js"
 import Home from './containers/Home.js';
+import ListingPage from './containers/ListingPage.js'
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path : ":page",
-        element : <div><h1>root route</h1></div>
+        element : <ListingPage />
       },
       {
         path : "contact",
@@ -55,7 +56,7 @@ function App() {
   const [listings , setListings] = useState([])
 
   return (
-    <context.Provider value = {{userName,setUsername}} >
+    <context.Provider value = {{userName,setUsername,currentPage,setCurrentPage,listings,setListings}} >
       <RouterProvider router={router}>
       </RouterProvider>
     </context.Provider>

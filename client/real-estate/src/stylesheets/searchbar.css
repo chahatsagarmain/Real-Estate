@@ -1,0 +1,41 @@
+.search-bar {
+    padding: 20px;
+    background-color: rgb(218, 217, 217);
+}
+
+.search-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+
+.grid-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input,
+select {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+button {
+    padding: 6px;
+    background-color: #4caf50;
+    color: white;
+}
+
+button:hover {
+    background-color: #45a049;
+}
