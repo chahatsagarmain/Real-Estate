@@ -7,6 +7,7 @@ from .serializers import ListingSerializer ,  ListingDetailedSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from .permission import IsAuthenticatedJWTCookie
+from rest_framework.parsers import MultiPartParser,FormParser
 # Create your views here.
 
 class ListingsView(ListAPIView):
@@ -22,14 +23,15 @@ class ListingsbyIdView(RetrieveAPIView):
 
 class SearchView(APIView):
     permission_classes = (IsAuthenticatedJWTCookie,)
+    parser_classes = (MultiPartParser,FormParser,)
 
-    def get(self, request):
-
+    def post(self, request):
+        
         try:
 
-            data = request.data
+            data = request.POST
             queryset = Listings.objects.order_by('-listing_date').filter(is_published=True)
-
+            print(data)
             published_order = data.get("published_order")
 
             if published_order == "Ascending":
@@ -62,6 +64,7 @@ class SearchView(APIView):
 
             price = data.get("price", None)
             if price is not None:
+                price = int(price.split("+")[0])
                 queryset = queryset.filter(price__gte=price)
 
             keywords = data.get("keywords", None)
@@ -73,6 +76,6 @@ class SearchView(APIView):
             return Response(serialized_data.data)
 
         except Exception as e:
-
+            print(str(e))
             response = {"message": str(e)}
             return Response(response, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
