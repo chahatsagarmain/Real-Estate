@@ -53,7 +53,7 @@ function App() {
 
   const [userName , setUsername] = useState(null)
   const [currentPage , setCurrentPage] = useState("")
-  const [listings , setListings] = useState([])
+  const [listings , setListings] = useState(null)
 
   return (
     <context.Provider value = {{userName,setUsername,currentPage,setCurrentPage,listings,setListings}} >

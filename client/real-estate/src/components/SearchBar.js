@@ -1,17 +1,24 @@
 import "./../stylesheets/searchbar.css";
 import { useState } from "react";
+import { useContext } from "react";
+import context from "../context/context";
+
+
+const initialInputSearch = {
+  "published_order": "Ascending",
+  "sale_type": "FOR_SALE",
+  "bedrooms": "0+",
+  "bathrooms": "0+",
+  "area": "0+",
+  "price": "0+",
+  "home_type": "APARTMENT",
+  "keywords": ""
+};
 
 function Searchbar() {
-    const [inputSearch, setInputSearch] = useState({
-      "published_order" : "Ascending",
-      "sale_type" : "FOR_SALE",
-      "bedrooms" : "0+",
-      "bathrooms" : "0+",
-      "area" : "0+",
-      "price" : "0+",
-      "home_type" : "APARTMENT",
-      "keywords" : ""
-    });
+    const [inputSearch, setInputSearch] = useState(initialInputSearch)
+
+    const {listings,setListings} = useContext(context)
   
     function inputChange(event){
       const name = event.target.name
@@ -21,11 +28,11 @@ function Searchbar() {
     }
 
     function sumbit(event){
-        event.preventDefault()
-        submitForm()
+        submitForm(event)
     }
 
-    async function submitForm() {
+    async function submitForm(event) {
+        event.preventDefault()
         try {
           const form = new FormData();
       
@@ -47,15 +54,19 @@ function Searchbar() {
       
           const response = await fetch("http://localhost:8000/api/listings/search", options);
           const responseData = await response.json();
-      
+          setTimeout(()=>{},1000)
           if(response.ok){
+            setListings(responseData)
             console.log(responseData)
+            //console.log(responseData)
+            
           }
           else{
             console.log(responseData)
           }
       
         } catch (error) {
+            alert("First log in")
           console.error('Error:', error);
         }
       }

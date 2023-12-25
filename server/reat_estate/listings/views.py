@@ -31,7 +31,7 @@ class SearchView(APIView):
 
             data = request.POST
             queryset = Listings.objects.order_by('-listing_date').filter(is_published=True)
-            print(data)
+
             published_order = data.get("published_order")
 
             if published_order == "Ascending":
