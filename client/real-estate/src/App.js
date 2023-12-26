@@ -12,6 +12,7 @@ import {useState } from 'react';
 import Login from "./containers/LogIn.js"
 import Home from './containers/Home.js';
 import ListingPage from './containers/ListingPage.js'
+import ListingDetail from './containers/ListingDetail.js'
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path : ":page",
-        element : <ListingPage />
+        element : <ListingPage />,
       },
       {
         path : "contact",
@@ -37,7 +38,12 @@ const router = createBrowserRouter([
       {
         path : "login",
         element : <Login />
+      },
+      {
+        path : "listing/:id",
+        element : <ListingDetail />
       }
+      
     ],
     
   },
