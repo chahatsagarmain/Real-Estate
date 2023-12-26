@@ -1,0 +1,59 @@
+.listing-detail-container {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.row-1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.row-1-col-1,
+.row-1-col-2 {
+    flex: 1;
+}
+
+.main-photo {
+    max-width: 100%;
+    height: auto;
+}
+
+.realtor-photo {
+    max-width: 10vw;
+    height: auto;
+}
+
+.row-2 {
+    margin-bottom: 2rem;
+}
+
+.row-3 img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.listing-detail p {
+    font-size: medium;
+    color: rgb(91, 90, 90);
+    
+}
+
+.listing-detail{
+    display: flex;
+    flex-direction: column;
+    padding : 3rem;
+}
+
+.row-3{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.row-3 image{
+    margin : 1rem;
+    padding-right: 1rem;
+}

@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path , include
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from django.conf import settings
-from django.conf.urls import static
+from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from django.urls import re_path
 
 
-urlpatterns = [
+urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
     path('admin/', admin.site.urls),
     path('api/token',TokenObtainPairView.as_view(),name='obtain-token'),
     path('api/token/refresh/',TokenRefreshView.as_view(),name='refresh-token'),
@@ -29,7 +31,8 @@ urlpatterns = [
     path('api-auth/',include('rest_framework.urls')),
     path('api/realtor/',include('realtor.urls')),
     path('api/listings/',include('listings.urls')),
-    path('api/contacts/',include('contact.urls'))
+    path('api/contacts/',include('contact.urls')),
+    path("",TemplateView.as_view(template_name="index.html"),name="index"),
+    re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
     
 ] 
-static.static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
